@@ -1778,20 +1778,84 @@ intro.to(flash, { opacity: 0, duration: 0.04 });
 intro.to(reel, { opacity: 0, duration: 0.08, ease: 'power4.in', delay: 0.08 });
 intro.set(reel, { display: 'none' });
 
-// 9. COMPRESS "KILL THE NOISE" then fade site in
-// Squeeze the text together
+// 9. COMPRESS then SEQUENCED REVEAL
 intro.to(kw, { opacity: 1, duration: 0.01 });
 intro.to(kw, { letterSpacing: '-0.3em', scaleX: 0.4, scaleY: 1.3, duration: 0.25, ease: 'power4.in' });
 intro.to(kw, { opacity: 0, scaleX: 0, duration: 0.1, ease: 'power4.in' });
 
-// Fade overlay out, site fades in smooth
+// Kill overlay
+intro.to(reel, { opacity: 0, duration: 0.15 });
+intro.set(reel, { display: 'none' });
+
+// Hide everything first
 const site = document.querySelector('.hero');
 const navEl = document.querySelector('nav');
-gsap.set([site, navEl], { opacity: 0 });
+gsap.set([site, navEl], { opacity: 1 });
+gsap.set(['.hero-vantage', '.hero h1', '.hero-sub', '.hero-sub2'], { opacity: 0, y: 0 });
+gsap.set('nav', { opacity: 0 });
 
-intro.to(reel, { opacity: 0, duration: 0.4, ease: 'power2.inOut' });
-intro.set(reel, { display: 'none' });
-intro.to([site, navEl], { opacity: 1, duration: 0.6, ease: 'power2.out' }, '<0.1');
+// Typewriter + flicker helper
+function typeFlicker(tl, selector, delay) {
+  const el = document.querySelector(selector);
+  const original = el.innerHTML;
+  // Wrap each char (preserve spans)
+  let wrapped = '';
+  let inTag = false;
+  let tagBuf = '';
+  for (let i = 0; i < original.length; i++) {
+    const c = original[i];
+    if (c === '<') { inTag = true; tagBuf += c; continue; }
+    if (inTag) { tagBuf += c; if (c === '>') { inTag = false; wrapped += tagBuf; tagBuf = ''; } continue; }
+    if (c === ' ') wrapped += '<span class="tchar" style="display:inline-block;min-width:0.25em">&nbsp;</span>';
+    else wrapped += '<span class="tchar" style="display:inline-block">' + c + '</span>';
+  }
+  el.innerHTML = wrapped;
+  const chars = el.querySelectorAll('.tchar');
+  gsap.set(chars, { opacity: 0 });
+
+  // Type in with flicker
+  tl.set(el, { opacity: 1 }, delay ? '>'+delay : '>0.2');
+  chars.forEach((ch, i) => {
+    const t = i * 0.0075;
+    // Char appears
+    tl.to(ch, { opacity: 1, duration: 0.01 }, '<' + t);
+    // Random flicker on some chars
+    if (i % 3 === 0 && i > 0) {
+      tl.to(ch, { opacity: 0, duration: 0.015 }, '<' + (t + 0.01));
+      tl.to(ch, { opacity: 1, duration: 0.01 }, '<0.02');
+    }
+  });
+  // Full element flicker after typing
+  tl.to(el, { opacity: 0, duration: 0.02 }, '>0.02');
+  tl.to(el, { opacity: 1, duration: 0.01 });
+  tl.to(el, { opacity: 0, duration: 0.015 });
+  tl.to(el, { opacity: 1, duration: 0.01 });
+}
+
+// VANTAGE. types in
+typeFlicker(intro, '.hero-vantage', 0.03);
+
+// BUILD THE SIGNAL types in
+typeFlicker(intro, '.hero h1', 0.12);
+
+// Thesis fades in (no typewriter — too small)
+intro.fromTo('.hero-sub',
+  { opacity: 0 },
+  { opacity: 1, duration: 0.5, ease: 'power2.out' },
+  '>0.2'
+);
+intro.fromTo('.hero-sub2',
+  { opacity: 0 },
+  { opacity: 1, duration: 0.5, ease: 'power2.out' },
+  '>0.1'
+);
+
+// Nav slides in
+intro.fromTo('nav',
+  { opacity: 0, y: -20 },
+  { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' },
+  '<'
+);
 
 // Animated counters
 const counterObs = new IntersectionObserver(entries => {
