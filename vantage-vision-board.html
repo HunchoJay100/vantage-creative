@@ -1135,6 +1135,272 @@ nav {
   letter-spacing: -0.05em;
 }
 
+/* ─── BRAND UNIVERSE ─── */
+.bu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 56px;
+}
+.bu-card {
+  background: var(--fg-04);
+  border: 1px solid var(--fg-08);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.bu-card:hover {
+  border-color: var(--fg-15);
+  transform: translateY(-4px);
+}
+.bu-wide { grid-column: span 2; }
+.bu-mockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 24px;
+  position: relative;
+}
+.bu-label {
+  padding: 16px 20px;
+  border-top: 1px solid var(--fg-08);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fg-40);
+}
+.a { color: var(--accent); }
+.bu-logo-sm {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.bu-logo-lg {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+/* Hat */
+.bu-hat-shape { text-align: center; }
+.bu-hat-crown {
+  width: 100px;
+  height: 60px;
+  background: #1a1a1a;
+  border-radius: 50% 50% 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.bu-hat-brim {
+  width: 130px;
+  height: 14px;
+  background: #1a1a1a;
+  border-radius: 0 0 4px 4px;
+  margin: 0 auto;
+  margin-top: -1px;
+  position: relative;
+  top: 60px;
+  z-index: 1;
+}
+.bu-hat-crown { position: relative; z-index: 2; }
+
+/* Tee */
+.bu-tee-shape {
+  width: 120px;
+  text-align: center;
+}
+.bu-tee-chest {
+  width: 120px;
+  height: 140px;
+  background: #111;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 24px;
+  position: relative;
+}
+.bu-tee-chest::before,
+.bu-tee-chest::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 40px;
+  background: #111;
+  border-radius: 0 0 4px 4px;
+}
+.bu-tee-chest::before { left: -22px; transform: rotate(15deg); border-radius: 4px; }
+.bu-tee-chest::after { right: -22px; transform: rotate(-15deg); border-radius: 4px; }
+.bu-tee-back-text {
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--fg-40);
+}
+
+/* Business Card */
+.bu-bcard .bu-mockup {
+  gap: 16px;
+}
+.bu-bcard-front, .bu-bcard-back {
+  width: 180px;
+  height: 110px;
+  border-radius: 4px;
+  padding: 16px;
+}
+.bu-bcard-front {
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bu-bcard-logo {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.bu-bcard-info { font-size: 9px; line-height: 1.6; }
+.bu-bcard-dim { color: var(--fg-40); }
+.bu-bcard-back {
+  background: #0a0a0a;
+  border: 1px solid var(--fg-08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hoodie */
+.bu-hoodie-shape {
+  width: 140px;
+  height: 160px;
+  background: #111;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.bu-hoodie-shape::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  width: 40px;
+  height: 16px;
+  background: #111;
+  border-radius: 8px 8px 0 0;
+}
+.bu-hoodie-text {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+.bu-hoodie-sub {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: var(--fg-40);
+  margin-top: 4px;
+}
+
+/* Social */
+.bu-social-frame {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 240px;
+}
+.bu-social-avatar {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background: #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+}
+.bu-social-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+.bu-social-handle {
+  font-size: 11px;
+  color: var(--fg-40);
+  margin-bottom: 6px;
+}
+.bu-social-bio {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--fg-40);
+  line-height: 1.5;
+}
+
+/* Sign */
+.bu-sign-frame {
+  width: 100%;
+  max-width: 200px;
+  height: 80px;
+  background: #0a0a0a;
+  border: 1px solid var(--fg-15);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 30px rgba(200,255,0,0.05);
+}
+.bu-sign-text {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+/* Sticker */
+.bu-sticker-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #111;
+  border: 2px solid var(--fg-15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Vehicle */
+.bu-vehicle-shape {
+  width: 100%;
+  max-width: 200px;
+  height: 80px;
+  background: linear-gradient(135deg, #1a1a1a, #111);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--fg-08);
+}
+.bu-vehicle-text {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+.bu-vehicle-sub {
+  font-size: 8px;
+  color: var(--fg-40);
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
 /* ─── FOOTER ─── */
 .foot {
   border-top: 1px solid var(--fg-08);
@@ -1161,6 +1427,8 @@ nav {
   .transform-arrow { display: none; }
   .inspo-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 160px); }
   .inspo-grid .i1 { grid-column: 1 / -1; }
+  .bu-grid { grid-template-columns: repeat(2, 1fr); }
+  .bu-wide { grid-column: span 2; }
   .type-row { grid-template-columns: 1fr; gap: 16px; }
   .mock-b, .mock-c { grid-template-columns: 1fr; }
   .mock-b-right { min-height: 180px; }
@@ -1634,6 +1902,108 @@ nav {
   </div>
 </section>
 
+<!-- BRAND UNIVERSE -->
+<section class="sec reveal" id="universe">
+  <div class="sec-tag">10 — Brand Universe</div>
+  <div class="sec-h2">Beyond the<br><span class="dim">screen.</span></div>
+  <div class="sec-p">A brand isn't a logo. It's an ecosystem. Here's what the full Vantage system looks like in the wild.</div>
+
+  <div class="bu-grid">
+    <div class="bu-card bu-hat">
+      <div class="bu-mockup">
+        <div class="bu-hat-shape">
+          <div class="bu-hat-brim"></div>
+          <div class="bu-hat-crown">
+            <span class="bu-logo-sm">V<span class="a">.</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="bu-label">Embroidered Hat</div>
+    </div>
+
+    <div class="bu-card bu-tee">
+      <div class="bu-mockup">
+        <div class="bu-tee-shape">
+          <div class="bu-tee-chest">
+            <span class="bu-logo-sm">V<span class="a">.</span></span>
+          </div>
+          <div class="bu-tee-back-text">VANTAGE<span class="a">.</span></div>
+        </div>
+      </div>
+      <div class="bu-label">Screen Print Tee</div>
+    </div>
+
+    <div class="bu-card bu-bcard bu-wide">
+      <div class="bu-mockup">
+        <div class="bu-bcard-front">
+          <div class="bu-bcard-logo">VANTAGE<span class="a">.</span></div>
+          <div class="bu-bcard-info">
+            <div>Jaden Flynn</div>
+            <div class="bu-bcard-dim">Founder & Creative Director</div>
+            <div class="bu-bcard-dim">hello@vantagecreative.co</div>
+          </div>
+        </div>
+        <div class="bu-bcard-back">
+          <span class="bu-logo-lg">V<span class="a">.</span></span>
+        </div>
+      </div>
+      <div class="bu-label">Business Cards</div>
+    </div>
+
+    <div class="bu-card bu-hoodie">
+      <div class="bu-mockup">
+        <div class="bu-hoodie-shape">
+          <div class="bu-hoodie-text">VANTAGE<span class="a">.</span></div>
+          <div class="bu-hoodie-sub">CREATIVE</div>
+        </div>
+      </div>
+      <div class="bu-label">Hoodie — Back Print</div>
+    </div>
+
+    <div class="bu-card bu-social">
+      <div class="bu-mockup">
+        <div class="bu-social-frame">
+          <div class="bu-social-avatar">V<span class="a">.</span></div>
+          <div class="bu-social-details">
+            <div class="bu-social-name">Vantage Creative</div>
+            <div class="bu-social-handle">@vantagecreative</div>
+            <div class="bu-social-bio">Strategy-led creative for brands that refuse to blend in.</div>
+          </div>
+        </div>
+      </div>
+      <div class="bu-label">Social Profile</div>
+    </div>
+
+    <div class="bu-card bu-sign">
+      <div class="bu-mockup">
+        <div class="bu-sign-frame">
+          <div class="bu-sign-text">VANTAGE<span class="a">.</span></div>
+        </div>
+      </div>
+      <div class="bu-label">Office Signage</div>
+    </div>
+
+    <div class="bu-card bu-sticker">
+      <div class="bu-mockup">
+        <div class="bu-sticker-circle">
+          <span class="bu-logo-lg">V<span class="a">.</span></span>
+        </div>
+      </div>
+      <div class="bu-label">Die-Cut Sticker</div>
+    </div>
+
+    <div class="bu-card bu-vehicle">
+      <div class="bu-mockup">
+        <div class="bu-vehicle-shape">
+          <div class="bu-vehicle-text">VANTAGE<span class="a">.</span></div>
+          <div class="bu-vehicle-sub">vantagecreative.co</div>
+        </div>
+      </div>
+      <div class="bu-label">Vehicle Wrap</div>
+    </div>
+  </div>
+</section>
+
 <!-- MOOD -->
 <section class="sec reveal">
   <div class="sec-tag">06 — Mood</div>
@@ -1818,7 +2188,7 @@ const obs = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // Stagger children
-document.querySelectorAll('.pal-grid,.svc-list,.voice-grid,.mood-grid,.type-stack,.mock-grid,.metrics-grid,.transform-quotes,.inspo-grid').forEach(g => {
+document.querySelectorAll('.pal-grid,.svc-list,.voice-grid,.mood-grid,.type-stack,.mock-grid,.metrics-grid,.transform-quotes,.inspo-grid,.bu-grid').forEach(g => {
   const go = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
