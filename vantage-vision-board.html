@@ -1675,7 +1675,7 @@ const kw = document.getElementById('killWord');
 const g1 = document.getElementById('glitch1');
 const g2 = document.getElementById('glitch2');
 const reel = document.getElementById('introReel');
-const intro = gsap.timeline({ delay: 0.15 });
+const intro = gsap.timeline({ delay: 0.05 });
 
 // Add scanlines
 for (let i = 0; i < 80; i++) {
@@ -1779,11 +1779,9 @@ intro.to(reel, { opacity: 0, duration: 0.08, ease: 'power4.in', delay: 0.08 });
 intro.set(reel, { display: 'none' });
 
 // 9. COMPRESS then SEQUENCED REVEAL
-intro.to(kw, { opacity: 1, duration: 0.005 });
-intro.to(kw, { letterSpacing: '-0.3em', scaleX: 0.3, scaleY: 1.2, opacity: 0, duration: 0.12, ease: 'power4.in' });
-
-// Kill overlay immediately
-intro.to(reel, { opacity: 0, duration: 0.05 });
+intro.to(kw, { opacity: 1, duration: 0.002 });
+intro.to(kw, { letterSpacing: '-0.3em', scaleX: 0.3, opacity: 0, duration: 0.04, ease: 'power4.in' });
+intro.to(reel, { opacity: 0, duration: 0.02 });
 intro.set(reel, { display: 'none' });
 
 // Hide everything first
@@ -1815,7 +1813,7 @@ function typeFlicker(tl, selector, delay) {
   // Type in with flicker
   tl.set(el, { opacity: 1 }, delay ? '>'+delay : '>0.2');
   chars.forEach((ch, i) => {
-    const t = i * 0.0075;
+    const t = i * 0.002;
     // Char appears
     tl.to(ch, { opacity: 1, duration: 0.01 }, '<' + t);
     // Random flicker on some chars
@@ -1831,30 +1829,16 @@ function typeFlicker(tl, selector, delay) {
   tl.to(el, { opacity: 1, duration: 0.01 });
 }
 
-// VANTAGE. types in
-typeFlicker(intro, '.hero-vantage', 0.03);
+// VANTAGE. types in + sub appears with it
+typeFlicker(intro, '.hero-vantage', 0.005);
+intro.fromTo('.hero-sub', { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'power2.out' }, '<0.05');
 
-// BUILD THE SIGNAL types in
-typeFlicker(intro, '.hero h1', 0.12);
+// BUILD THE SIGNAL types in + sub2 appears with it
+typeFlicker(intro, '.hero h1', 0.02);
+intro.fromTo('.hero-sub2', { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'power2.out' }, '<0.05');
 
-// Thesis fades in (no typewriter — too small)
-intro.fromTo('.hero-sub',
-  { opacity: 0 },
-  { opacity: 1, duration: 0.5, ease: 'power2.out' },
-  '>0.2'
-);
-intro.fromTo('.hero-sub2',
-  { opacity: 0 },
-  { opacity: 1, duration: 0.5, ease: 'power2.out' },
-  '>0.1'
-);
-
-// Nav slides in
-intro.fromTo('nav',
-  { opacity: 0, y: -20 },
-  { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' },
-  '<'
-);
+// Nav slides in with the last section
+intro.fromTo('nav', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.2, ease: 'power3.out' }, '<');
 
 // Animated counters
 const counterObs = new IntersectionObserver(entries => {
